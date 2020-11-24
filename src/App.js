@@ -1,9 +1,24 @@
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+
 import './App.css';
 import Header from './components/Header/Header';
 
 function App() {
   return (
-    <Header/>
+    <Router>
+      <Header/>
+      <Switch>
+        <Route path="/home">
+          ToDoList
+        </Route>
+        <Route path="/task">
+          Task
+        </Route>
+        <Route exact path="/">
+          <Redirect to="/home"/>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
