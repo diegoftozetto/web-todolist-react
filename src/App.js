@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 import './App.css';
 import Header from './components/Header/Header';
+import Task from './components/Task/Task';
 import ToDoList from './components/ToDoList/ToDoList';
 
 function App() {
@@ -13,7 +14,7 @@ function App() {
           <ToDoList/>
         </Route>
         <Route path="/task">
-          Task
+          <Task/>
         </Route>
         <Route exact path="/">
           <Redirect to="/home"/>
