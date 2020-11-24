@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-d
 
 import './App.css';
 import Header from './components/Header/Header';
+import ToDoList from './components/ToDoList/ToDoList';
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Header/>
       <Switch>
         <Route path="/home">
-          ToDoList
+          <ToDoList/>
         </Route>
         <Route path="/task">
           Task
