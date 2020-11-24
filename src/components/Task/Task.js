@@ -9,10 +9,10 @@ function Task() {
         </div>
         <div className="card-body">
           <h6>Nome da Tarefa</h6>
-          <form className="form-inline">
-            <input type="text" className="form-control" id="task-name" placeholder="Informe o nome da tarefa..."/>
-            <button type="submit" className="btn btn-secondary ml-2">Cancelar</button>
-            <button type="submit" className="btn btn-primary ml-2">Salvar</button>
+          <form>
+            <input type="text" className="form-control mr-2 mb-2" id="task-name" placeholder="Informe o nome da tarefa..."/>
+            <button type="submit" className="btn btn-secondary mr-2">Cancelar</button>
+            <button type="submit" className="btn btn-primary">Salvar</button>
           </form>
         </div>
       </div>
