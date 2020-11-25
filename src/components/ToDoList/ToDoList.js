@@ -9,7 +9,7 @@ function ToDoList() {
     fetch('https://web-api-todolist.herokuapp.com/tasks').then((res)=>{
       res.json().then(dados => {
         if(res.status === 200) {
-          setTasks(dados);
+          setTasks(dados.sort((a,b) => (a.updatedAt > b.updatedAt) ? -1 : ((b.updatedAt > a.updatedAt) ? 1 : 0)));
         } else {
           //console.log(dados.message)
         }
