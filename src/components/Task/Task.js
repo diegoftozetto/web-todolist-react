@@ -7,11 +7,20 @@ function Task() {
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    console.log({
-      taskName
-    })
-  }
+    var currentText = event.target.taskName.value;
+    const json = {text: currentText}
 
+    fetch('https://web-api-todolist.herokuapp.com/tasks', {
+      method: "POST",
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(json)
+    }).then((res)=> {
+      res.json().then(dados => {
+        event.target.taskName.value = "";
+        console.log(dados.message)
+      });
+    });
+  }
 
   return (
     <div className="container mt-4">
