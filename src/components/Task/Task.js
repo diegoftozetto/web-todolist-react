@@ -16,8 +16,12 @@ function Task() {
       body: JSON.stringify(json)
     }).then((res)=> {
       res.json().then(dados => {
-        event.target.taskName.value = "";
-        console.log(dados.message)
+        if(res.status === 201) {
+          event.target.taskName.value = "";
+          //console.log(dados.message)
+        } else {
+          //console.log(dados.message)
+        }
       });
     });
   }
