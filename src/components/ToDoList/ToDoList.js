@@ -8,8 +8,11 @@ function ToDoList() {
   useEffect(() => {
     fetch('https://web-api-todolist.herokuapp.com/tasks').then((res)=>{
       res.json().then(dados => {
-        console.log(dados)
-        setTasks(dados);
+        if(res.status === 200) {
+          setTasks(dados);
+        } else {
+          //console.log(dados.message)
+        }
       });
     });
   }, []);
@@ -28,24 +31,56 @@ function ToDoList() {
         body: JSON.stringify(json)
       }).then((res)=> {
         res.json().then(dados => {
-          //console.log(dados.message)
+          if(res.status === 200) {
+            var filterTasks = tasks.filter(items => items._id !== dados._id);
+            filterTasks.unshift(dados);
+            setTasks(filterTasks);
+          } else {
+            //console.log(dados.message)
+          }
+        });
+      });
+    }
+
+    const removeClickhandler = (event) => {
+      const id = event.target.id.substring(7);
+
+      fetch('https://web-api-todolist.herokuapp.com/tasks/' + id, {
+        method: "DELETE"
+      }).then((res)=> {
+        res.json().then(dados => {
+          if(res.status === 200) {
+            var filterTasks = tasks.filter(items => items._id !== id);
+            setTasks(filterTasks);
+            //console.log(dados.message)
+          } else {
+            //console.log(dados.message)
+          }
         });
       });
     }
 
     items = tasks.map((task) =>
       <li className="list-group-item" key={task._id}>
-        <input
-          id={`marked_${task._id}`}
-          type="checkbox"
-          className="mr-2"
-          value={task.marked}
-          onChange={checkMarkedHandler}
-          defaultChecked={task.marked}
-        />
-        <label htmlFor={`marked_${task._id}`}>
-          {task.text}
-        </label>
+        <div className="form-check">
+          <input
+            id={`marked_${task._id}`}
+            type="checkbox"
+            className="form-check-input mr-2"
+            value={task.marked}
+            onChange={checkMarkedHandler}
+            defaultChecked={task.marked}
+          />
+          <label className="form-check-label" htmlFor={`marked_${task._id}`}>
+            {task.text}
+          </label>
+
+          {task.marked ?
+            <div className="icons">
+              <i className="fas fa-trash icon-remove" onClick={removeClickhandler} id={`marked_${task._id}`}></i>
+            </div>: null}
+        </div>
+        <small>Última Atualização: {new Date(task.updatedAt).toLocaleString('pt-br')}</small>
       </li>
     );
 

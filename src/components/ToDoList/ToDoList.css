@@ -8,3 +8,12 @@
   font-size: 1.25em;
   color: rgb(157, 177, 194);
 }
+
+.icons {
+  float: right;
+  cursor: pointer;
+}
+
+.icon-remove {
+  color: rgb(187, 8, 8);
+}
