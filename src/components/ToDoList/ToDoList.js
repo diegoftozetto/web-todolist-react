@@ -71,16 +71,17 @@ function ToDoList() {
             onChange={checkMarkedHandler}
             defaultChecked={task.marked}
           />
-          <label className="form-check-label" htmlFor={`marked_${task._id}`}>
+          <label className="form-check-label text-task" htmlFor={`marked_${task._id}`}>
             {task.text}
           </label>
-
-          {task.marked ?
-            <div className="icons">
-              <i className="fas fa-trash icon-remove" onClick={removeClickhandler} id={`marked_${task._id}`}></i>
-            </div>: null}
         </div>
-        <small>Última Atualização: {new Date(task.updatedAt).toLocaleString('pt-br')}</small>
+        <small>
+          Última Atualização: {new Date(task.updatedAt).toLocaleString('pt-br')}
+          {task.marked ?
+              <div className="icons">
+                <i className="fas fa-trash icon-remove" onClick={removeClickhandler} id={`marked_${task._id}`}></i>
+              </div>: null}
+        </small>
       </li>
     );
 

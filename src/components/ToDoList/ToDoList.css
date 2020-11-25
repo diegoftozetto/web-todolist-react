@@ -17,3 +17,8 @@
 .icon-remove {
   color: rgb(187, 8, 8);
 }
+
+.text-task {
+  display: inline-block;
+  word-break: break-word;
+}
