@@ -35,7 +35,8 @@ function Task() {
         <div className="card-body">
           <h6>Nome da Tarefa</h6>
           <form onSubmit={formSubmitHandler}>
-            <input autoFocus type="text" className="form-control mb-2" name="taskName" id="taskName" placeholder="Informe o nome da tarefa..."/>
+            <input autoFocus t minlength="3" type="text" className="form-control mb-2" name="taskName"
+              placeholder="Informe o nome da tarefa..." required />
             <Link className="btn btn-secondary btn-sm mr-2" to="/home" role="button">Cancelar</Link>
             <button type="submit" className="btn btn-primary btn-sm">Salvar</button>
           </form>
