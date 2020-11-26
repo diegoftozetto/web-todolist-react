@@ -79,7 +79,7 @@ function ToDoList() {
           Última Atualização: {new Date(task.updatedAt).toLocaleString('pt-br')}
           {task.marked ?
               <div className="icons">
-                <i className="fas fa-trash icon-remove" onClick={removeClickhandler} id={`marked_${task._id}`}></i>
+                <i title="Excluir" className="fas fa-trash icon-remove" onClick={removeClickhandler} id={`marked_${task._id}`}></i>
               </div>: null}
         </small>
       </li>
