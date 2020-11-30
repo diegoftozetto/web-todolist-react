@@ -5,6 +5,7 @@ import "./Task.css"
 
 function Task() {
   const [ text, setText ] = useState('');
+  const [ errorText, setErrorText ] = useState('');
 
   const history = useHistory();
 
@@ -37,15 +38,43 @@ function Task() {
         <div className="card-body">
           <h6>Nome da Tarefa</h6>
           <form onSubmit={formSubmitHandler}>
-            <input autoFocus type="text" className="form-control mb-2" name="text"
-              placeholder="Informe o nome da tarefa..." value={text} onChange={event => setText(event.target.value)} required/>
-            <Link className="btn btn-secondary btn-sm mr-2" to="/home" role="button">Cancelar</Link>
-            <button type="submit" className="btn btn-primary btn-sm">Salvar</button>
+            <input
+              autoFocus
+              type="text"
+              className={`form-control ${errorText ? 'invalid' : ''}`}
+              id="text"
+              name="text"
+              placeholder="Informe o nome da tarefa..." value={text}
+              onChange={event => {
+                setText(event.target.value);
+                setErrorText(textValidator(event.target.value));
+              }}
+              />
+            <div className="task-error">{errorText}</div>
+            <Link className="btn btn-secondary btn-sm mt-2 mr-2" to="/home" role="button">Cancelar</Link>
+            <button
+              type="submit"
+              className="btn btn-primary btn-sm mt-2"
+              disabled={
+                textValidator(text)
+              }
+            >
+              Salvar
+            </button>
           </form>
         </div>
       </div>
     </div>
   );
+}
+
+function textValidator(text) {
+  if(text.length === 0)
+    return 'Nome da tarefa é obrigatório.'
+  else if(text.length > 100)
+    return 'Nome da tarefa deve possuir no máximo 100 caracteres.'
+  else
+    return '';
 }
 
 export default Task;

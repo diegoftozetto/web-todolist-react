@@ -1,0 +1,9 @@
+.task-error {
+  color: red;
+  margin-left: 0.3em;
+  font-size: 0.9em;
+}
+
+.form-control.invalid {
+  border: 1px solid red;
+}
