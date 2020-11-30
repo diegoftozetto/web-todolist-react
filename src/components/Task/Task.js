@@ -1,14 +1,16 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import "./Task.css"
 
 function Task() {
+  const [ text, setText ] = useState('');
+
   const history = useHistory();
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
-    var currentText = event.target.taskName.value;
-    const json = {text: currentText}
+    const json = {text: text}
 
     fetch('https://web-api-todolist.herokuapp.com/tasks', {
       method: "POST",
@@ -35,8 +37,8 @@ function Task() {
         <div className="card-body">
           <h6>Nome da Tarefa</h6>
           <form onSubmit={formSubmitHandler}>
-            <input autoFocus t minlength="3" type="text" className="form-control mb-2" name="taskName"
-              placeholder="Informe o nome da tarefa..." required />
+            <input autoFocus type="text" className="form-control mb-2" name="text"
+              placeholder="Informe o nome da tarefa..." value={text} onChange={event => setText(event.target.value)} required/>
             <Link className="btn btn-secondary btn-sm mr-2" to="/home" role="button">Cancelar</Link>
             <button type="submit" className="btn btn-primary btn-sm">Salvar</button>
           </form>
