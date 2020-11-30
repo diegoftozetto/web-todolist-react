@@ -17,7 +17,7 @@ function ToDoList() {
     });
   }, []);
 
-  const loading = <p id="loading">Carregando...</p>;
+  const loading = <p id="todolist-loading">Carregando...</p>;
 
   var items, notFoundTasks, list;
   if(tasks !== undefined) {
@@ -71,21 +71,21 @@ function ToDoList() {
             onChange={checkMarkedHandler}
             defaultChecked={task.marked}
           />
-          <label className="form-check-label text-task" htmlFor={`marked_${task._id}`}>
+          <label className="form-check-label todolist-text-task" htmlFor={`marked_${task._id}`}>
             {task.text}
           </label>
         </div>
         <small>
           Última Atualização: {new Date(task.updatedAt).toLocaleString('pt-br')}
           {task.marked ?
-              <div className="icons">
-                <i title="Excluir" className="fas fa-trash icon-remove" onClick={removeClickhandler} id={`marked_${task._id}`}></i>
+              <div className="todolist-icons">
+                <i title="Excluir" className="fas fa-trash todolist-icon-remove" onClick={removeClickhandler} id={`marked_${task._id}`}></i>
               </div>: null}
         </small>
       </li>
     );
 
-    notFoundTasks = <p id="no-task">Nenhuma tarefa encontrada...</p>
+    notFoundTasks = <p id="todolist-no-task">Nenhuma tarefa encontrada...</p>
     list = <ul className="list-group list-group-flush">{items}</ul>;
   }
 

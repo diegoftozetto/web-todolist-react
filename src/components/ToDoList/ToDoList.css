@@ -1,24 +1,24 @@
-#loading {
+#todolist-loading {
   font-size: 1.25em;
   color: rgb(65, 65, 65);
   border-bottom: 1px solid black;
 }
 
-#no-task {
+#todolist-no-task {
   font-size: 1.25em;
   color: rgb(157, 177, 194);
 }
 
-.icons {
+.todolist-icons {
   float: right;
   cursor: pointer;
 }
 
-.icon-remove {
+.todolist-icon-remove {
   color: rgb(187, 8, 8);
 }
 
-.text-task {
+.todolist-text-task {
   display: inline-block;
   word-break: break-word;
 }
